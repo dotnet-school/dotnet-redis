@@ -12,7 +12,7 @@
 
 - [ ] Retrieve a POCO by its id in redis
 
-- [ ] Implement connection reconnect
+- [ ] Implement connection recovery
 
   
 
@@ -73,11 +73,15 @@ Following two seem to be most used and best supported :
       bitnami/redis:latest
   ```
 
+  
+
 - To connect using redis cli : 
 
   ```bash
   docker exec -it redis redis-cli   
   ```
+
+  
 
 - If you want to stop your Redis container later on: 
 
@@ -85,11 +89,15 @@ Following two seem to be most used and best supported :
   docker stop redis
   ```
 
+  
+
 - To re-start when you need to : 
 
   ```bash
   docker start redis
   ```
+
+  
 
 - If you want to delete the redis container 
 
@@ -107,9 +115,11 @@ Following two seem to be most used and best supported :
   dotnet new globaljson --sdk-version 6.0.100
   ```
 
+  
+
 - Create a gitignore file 
 
-  ```
+  ```bash
   dotnet new gitignore
   ```
 
@@ -119,19 +129,50 @@ Following two seem to be most used and best supported :
 
 - Create a new console project
 
-  ```
+  ```bash
+  dotnet new console -o ConsoleApp
   ```
 
   
 
+- Install the redis library to our project 
 
+  ```bash
+  dotnet add ConsoleApp/ConsoleApp.csproj package StackExchange.Redis
+  ```
+
+
+
+### Connect with Redis 
+
+- Create following class in `ConsleApp/Program.cs`
+
+  ```csharp
+  using System;
+  
+  namespace ConsoleApp
+  {
+    public class Program
+    {
+      public static void Main()
+      {
+        Console.WriteLine("Hello World!");
+      }
+    }
+  }
+  ```
+
+  
 
 ### References: 
 
-- https://docs.redis.com/latest/rs/references/client_references/client_csharp/
+- Redis c# clients: https://docs.redis.com/latest/rs/references/client_references/client_csharp/
 
-- https://github.com/StackExchange/StackExchange.Redis
+- StackExchangeRedis: https://github.com/StackExchange/StackExchange.Redis
 
-- https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f#stackexchangeredis
+- StackExchangeRedis Docs: https://stackexchange.github.io/StackExchange.Redis/
+
+- StackExchangeRedis Best Practices : https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f#stackexchangeredis
 
   
+
