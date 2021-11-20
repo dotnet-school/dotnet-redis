@@ -149,18 +149,33 @@ Following two seem to be most used and best supported :
 
   ```csharp
   using System;
+  using System.Threading.Tasks;
+  using StackExchange.Redis;
   
   namespace ConsoleApp
   {
     public class Program
     {
-      public static void Main()
+      public static async Task Main()
       {
-        Console.WriteLine("Hello World!");
+        // Configuration for Redis
+        var redisConfig = new ConfigurationOptions{EndPoints = { "localhost:6379"}};
+        
+        // Create connection with Redis
+        var redis =  await ConnectionMultiplexer.ConnectAsync(redisConfig);
+        var db = redis.GetDatabase();
+        
+        // Ping redis and check latency
+        var pingResult = await db.PingAsync();
+        Console.WriteLine($"Redis latency : {pingResult.TotalMilliseconds}ms");
       }
     }
   }
   ```
+
+  If redis is running, you will see output like : 
+
+  > Redis latency : 2.3453ms
 
   
 
