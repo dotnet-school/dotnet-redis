@@ -80,12 +80,14 @@ namespace ConsoleApp
       var person2Read = await db.GetObjectAsync<Person>("two");
       var person3Read = await db.GetObjectAsync<Person>("thee");
       var person4Read = await db.GetObjectAsync<Person>("four");
+      var nonExisting = await db.GetObjectAsync<Person>("unknown-key");
 
       var allValuesEqual =
               person1.Equals(person1Read) &&
               person2.Equals(person2Read) &&
               person3.Equals(person3Read) &&
-              person4.Equals(person4Read);
+              person4.Equals(person4Read) &&
+              nonExisting == null;
       
       Console.WriteLine(
               allValuesEqual ? "Successfully handled objects" : "Failed to correctly handle objects");
