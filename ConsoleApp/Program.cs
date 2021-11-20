@@ -22,6 +22,20 @@ namespace ConsoleApp
       SetStringIfNotAlreadyPresentWithTTL(db);
       TestObjects.Run(db);
       await SaveAndGetObject(db);
+      while (true)
+      {
+        var i = Console.ReadKey();
+        if (i.KeyChar == 'q') return;
+        
+        try
+        {
+          await SaveAndGetObject(db);
+        }
+        catch(Exception e)
+        {
+          Console.WriteLine($"Failed with error {e}");
+        }
+      }
     }
 
     public static void SetStringIfNotAlreadyPresent(IDatabase db)
