@@ -4,9 +4,9 @@
 
 - [ ] Setup docker-compose with redis
 
-- [ ] Create a client 
+- [x] Create a client 
 
-- [ ] Use `SETENX`
+- [x] Use `SETENX`
 
 - [ ] Save a POCO by its id in redis
 
@@ -248,6 +248,15 @@ Following two seem to be most used and best supported :
   > Value after second set: first value
   > Value after TTL: 
   > Value after third set: third value
+
+
+
+### Save and get object from Redis
+
+- Create a class to represent an object with some values
+
+  ```
+  ```
 
   
 
