@@ -20,6 +20,7 @@ namespace ConsoleApp
       Console.WriteLine($"Redis latency : {pingResult.TotalMilliseconds}ms");
       SetStringIfNotAlreadyPresent(db);
       SetStringIfNotAlreadyPresentWithTTL(db);
+      TestObjects.Run(db);
     }
 
     public static void SetStringIfNotAlreadyPresent(IDatabase db)
@@ -38,6 +39,7 @@ namespace ConsoleApp
       var result2 = db.StringGet("my-key");
       Console.WriteLine($"Value after second set: {result2}");
     }
+    
     public static void SetStringIfNotAlreadyPresentWithTTL(IDatabase db)
     {
       // Delete key if it exists
