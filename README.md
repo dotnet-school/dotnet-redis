@@ -37,12 +37,26 @@ Following two seem to be most used and best supported :
 ### Pre-requisite
 
 - Read basics about redis: 
+
+  > https://redis.io/topics/introduction
+
 - Ensure .NET6 is installed
+
+  > Download : https://dotnet.microsoft.com/download/dotnet/6.0
+
 - Ensure docker is installed ( v3.3.1 or above)
 
+  > Download and install from https://www.docker.com/products/docker-desktop.
 
+- CLI
 
-### Run redis using docker
+  > Commands in this arcticle are created for bash. You can use most command in a poweshell. Its recommended to use something like `wsl` or `git bash` if you are running on windows.
+  >
+  > Download and install gitbash (if required) from : https://git-scm.com/downloads
+
+  
+
+### Run Redis using docker
 
 - Run redis as a docker container 
 
@@ -83,7 +97,34 @@ Following two seem to be most used and best supported :
   docker rm redis
   ```
 
+
+
+### Create a .NET project
+
+- Set the .NET version for our project : 
+
+  ```bash
+  dotnet new globaljson --sdk-version 6.0.100
+  ```
+
+- Create a gitignore file 
+
+  ```
+  dotnet new gitignore
+  ```
+
+  Open the `.gitignore` file and add `redis-data` dir to it.
+
   
+
+- Create a new console project
+
+  ```
+  ```
+
+  
+
+
 
 ### References: 
 
