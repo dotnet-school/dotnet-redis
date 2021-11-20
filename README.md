@@ -173,9 +173,47 @@ Following two seem to be most used and best supported :
   }
   ```
 
-  If redis is running, you will see output like : 
+  If Redis is running, you will see output like : 
 
   > Redis latency : 2.3453ms
+
+
+
+### Set and Get a value in Redis
+
+- For each Redis command (https://redis.io/commands), you should be able to find correspding API in our client `StackExchange.Redis` here: https://stackexchange.github.io/StackExchange.Redis/
+
+- For e.g. we will try to use the [`SETENX`](https://redis.io/commands/setnx) which will only set a value if it does not already exists in redis. Whenever using any command, ensure you check its complexity at https://redis.io/commands. For this case, complexity is `O(1)` which is the best you can have.
+
+  ```
+  SET "test.key" "test.value" NX EX 900
+  ```
+
+- In our `ConsoleApp/Program.cs`, lets add this method to check how to do this in Csharp 
+
+  ```csharp
+  public static void SetStringIfNotAlreadyPresent(IDatabase db)
+  {
+    // Delete key if it exists
+    db.KeyDelete("my-key");
+  
+    // First time should set value
+    db.StringSetAsync("my-key", "first value", null, When.NotExists);
+  
+    var result = db.StringGet("my-key");
+    Console.WriteLine($"Value after first set: {result}");
+  
+    // Second time should not overwrite first value
+    db.StringSetAsync("my-key", "second value", null, When.NotExists);
+    var result2 = db.StringGet("my-key");
+    Console.WriteLine($"Value after second set: {result2}");
+  }
+  ```
+
+  On running the program, you should see folloing output : 
+
+  > Value after first set: first value
+  > Value after second set: first value
 
   
 
