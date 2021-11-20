@@ -13,6 +13,21 @@ namespace ConsoleApp
     public IList<string> PreviousAddresses { get; set; } = new List<string>();
     public ISet<string> FavoriteColors { get; set; } = new HashSet<string>();
 
+    public static Person Create(
+            string name,
+            IEnumerable<string>? previousAddresses = null,
+            IEnumerable<string>? favoriteColors = null)
+    {
+      return new()
+      {
+              Name = name,
+              Age = 1,
+              Salary = 231.34m,
+              IsMale = true,
+              FavoriteColors = favoriteColors?.ToHashSet() ?? new HashSet<string>(){"red", "blue", "green"},
+              PreviousAddresses = previousAddresses?.ToList() ?? new List<string>(){"Delhi", "Mumbai", "Bengaluru"}
+      }; 
+    }
     public override bool Equals(object? that)
     {
       var otherPerson = that as Person;

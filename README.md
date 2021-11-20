@@ -8,6 +8,8 @@
 
 - [x] Use `SETENX`
 
+- [ ] Understand `RedisValue`
+
 - [ ] Save a POCO by its id in redis
 
 - [ ] Retrieve a POCO by its id in redis
@@ -251,7 +253,14 @@ Following two seem to be most used and best supported :
 
 
 
-### Save and get object from Redis
+### Working with Objects
+
+- Saving your custom objects is not straightforward with Redis. As we need serialize and deserialize C# types to Redis types and vice versa.
+
+  There can be two approaches to dealing with this : 
+
+  - Use `Json` or `Protobuf`  to represent your object as string/binary in redis values
+  - Map your object yourself to Redis types like [Hashes](https://redis.io/topics/data-types#hashes), List, Set etc.
 
 - Create a class to represent an object with some values
 

@@ -9,7 +9,6 @@ namespace ConsoleApp
 
     public static void Run(IDatabase db)
     {
-      CheckObject();
     }
     
     public static void CheckObject()
@@ -38,7 +37,7 @@ namespace ConsoleApp
       Console.WriteLine("one.Equals(two)" + one.GetHashCode().Equals(two.GetHashCode()));
     }
 
-    public static void SaveGetObjects(IDatabase database)
+    public static void SaveObject(IDatabase db)
     {
     }
   }
