@@ -4,13 +4,33 @@
 
 - [ ] Setup docker-compose with redis
 
-- [ ] Excpaing multiplexer vs getDatabase(), cheap pass thorugh and reusable
+- [ ] Explain multiplexer vs getDatabase(), cheap pass thorugh and reusable
+
+- [ ] Understand `RedisValue`
+
+- [ ] Topics
+
+  - [ ] Strings
+  - [ ] Object as json strings
+  - [ ] HashMap
+  - [ ] List
+  - [ ] listening to list
+  - [ ] Set
+
+- [ ] Best practices
+
+  - [ ] Wrap IDatabase (for testing/mocking)
+  - [ ] Create only one multiplexer
+
+- [ ] Advanced
+
+  - [ ] SSl with redis
+  - [ ] mastter slave
+  - [ ] kyspace notifications
 
 - [x] Create a client 
 
 - [x] Use `SETENX`
-
-- [ ] Understand `RedisValue`
 
 - [x] Save a POCO by its id in redis
 
