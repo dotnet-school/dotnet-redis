@@ -46,3 +46,14 @@
   docker rm redis
   ```
 
+
+
+### Redis GUI
+
+- If you have npm installed you can run this simple command to open up a GUI in browser: 
+
+  ```bash
+  npx redis-commander
+  ```
+
+  Or you can search for other Redis GUI tools.

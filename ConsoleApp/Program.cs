@@ -21,9 +21,10 @@ namespace ConsoleApp
       Console.WriteLine($"Redis latency : {pingResult.TotalMilliseconds}ms");
       
       //Demos
-      StringsWithRedis.RunDemo(db);
-      TestObjects.Run(db);
-      await JsonObjectsInRedis.RunDemo(db);
+      // StringsWithRedis.RunDemo(db);
+      // TestObjects.Run(db);
+      // await JsonObjectsInRedis.RunDemo(db);
+      await RedisHasMaps.RunDemo(db);
     }
   }
 }

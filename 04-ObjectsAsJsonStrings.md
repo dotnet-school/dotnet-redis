@@ -1,6 +1,6 @@
 # Storing Objects in Redis
 
-- Saving your custom objects is not out-of-box supported with Redis. As we need serialize and deserialize C# types to Redis types and vice versa.
+- Saving your custom objects is not out-of-box supported with Redis. We will need to map  C# types to Redis types and vice versa.
 
   There can be two approaches to dealing with this : 
 

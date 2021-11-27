@@ -2,6 +2,8 @@
 
 ### Todo: 
 
+- [ ] Change all db to connection.GetDb()
+
 - [ ] Topics
 
   - [x] Strings
@@ -58,7 +60,7 @@
 
   > Choose a client library and create a .NET console app
 
-- ***[Strings](./Strings.md)***
+- ***[Strings](./03-Strings.md)***
 
   > Save strings. learn TTL for key expiry, and using NX for writting only when value is null
 
@@ -69,6 +71,13 @@
 - ***[Storing Objects as HashMaps](06-ObjectsAsHashMaps.md)***
 
 
+
+Misc
+
+- redis treats a non-existent key as zero;
+- nil responses are treated as zero
+- Keys can be string or byte (redis never tries to interpret them as any type)
+- Use `KeyValue.HasValue` to check if there is any value for the key
 
 ### Pre-requisite
 
