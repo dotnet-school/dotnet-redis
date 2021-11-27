@@ -6,36 +6,33 @@ For e.g. when we stored person value as Json String, it works when we only need 
 
 **Use dictionary when you need to store objects whose fields can be updated concurrently**
 
+Though remember an important limitation **hasmaps cannot store lists or other data structures in it**
 
-
-### Simple string key and values in dictionary
+### Storing object in HashMaps
 
 ```csharp
 // We need to create key/value pairs in map one by one
-HashEntry one = new HashEntry("key-one", "value-one");
-HashEntry two = new HashEntry("key-two", "value-two");
+var name   = new HashEntry("name", "Person 1");
+var salary = new HashEntry("salary", "23100.34m");
+var isMale = new HashEntry("IsMale", "true");
+
+var savedEntries = new[] {name, salary, isMale};
 
 // Store entries as a hash map
-await db.HashSetAsync("key-of-my-hash", new[] {one, two});
+await db.HashSetAsync("person-1", savedEntries);
 
 // Get entries from hash map key
-var entries = await db.HashGetAllAsync("key-of-my-hash");
+var entries = await db.HashGetAllAsync("person-1");
 
 // Use .Name and .Value to read entries
-foreach (var entry in entries){
+foreach (var entry in entries) {
   Console.WriteLine($"{entry.Name} = {entry.Value}");
 }
 ```
 
+Output: 
 
+> name = Person 1
+> salary = 23100.34m
+> IsMale = true
 
-### Saving a list as value in Map entry
-
-```
-```
-
-
-
-### Using a HashMap for saving data
-
-- Lets create a PersonRe

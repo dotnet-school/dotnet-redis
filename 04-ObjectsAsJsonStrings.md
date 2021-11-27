@@ -5,7 +5,7 @@
   There can be two approaches to dealing with this : 
 
   - Use `Json` or `Protobuf`  to represent your object as string/binary in redis values
-  - Map your object yourself to Redis types like [Hashes](https://redis.io/topics/data-types#hashes), List, Set etc.
+  - Map your object yourself to Redis types like [Hashes](https://redis.io/topics/data-types#hashes), List, Set etc  and store as separate keys
 
 - We will use the Json serializer, and create an extension to `IDatabasee` interface to add two new methods for saving and reading objects from Redis: 
 

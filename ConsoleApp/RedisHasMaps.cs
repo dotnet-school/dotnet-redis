@@ -13,12 +13,20 @@ namespace ConsoleApp
 
         public static async Task SimpleStringMaps(IDatabase db)
         {
-            HashEntry one = new HashEntry("key-one", "value-one");
-            HashEntry two = new HashEntry("key-two", "value-two");
-            await db.HashSetAsync("key-of-my-hash", new[] {one, two});
-            var entries = await db.HashGetAllAsync("key-of-my-hash");
-            foreach (var entry in entries)
-            {
+            // We need to create key/value pairs in map one by one
+            var name = new HashEntry("name", "Person 1");
+            var salary = new HashEntry("salary", "23100.34m");
+            var isMale = new HashEntry("IsMale", "true");
+            var savedEntries = new[] {name, salary, isMale};
+            
+            // Store entries as a hash map
+            await db.HashSetAsync("person-1", savedEntries);
+            
+            // Get entries from hash map key
+            var entries = await db.HashGetAllAsync("person-1");
+            
+            // Use .Name and .Value to read entries
+            foreach (var entry in entries) {
                 Console.WriteLine($"{entry.Name} = {entry.Value}");
             }
         }

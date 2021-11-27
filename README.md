@@ -8,13 +8,13 @@
 
   - [x] Strings
   - [x] Object as json strings
-  - [ ] HashMap
-    - [ ] sample use case (update field concurrently)
-
+  - [x] HashMap
   - [ ] List
   - [ ] listening to list
   - [ ] Set
   - [ ] Understand `RedisValue`
+  - [ ] lua script
+  - [ ] transactional updates
   - [ ] Connections and configurations
     - [ ] Explain multiplexer vs getDatabase(), cheap pass thorugh and reusable
 
