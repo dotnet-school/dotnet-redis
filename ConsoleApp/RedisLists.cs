@@ -10,9 +10,12 @@ namespace ConsoleApp
         public static async Task RunDemo(IDatabase db)
         {
             var keyForList = "my-list-key";
+
+            // Delete if exists
+            db.KeyDelete(keyForList);
             
             // List is created if does not exist
-            await db.ListRightPushAsync(keyForList, "one");
+            await db.ListRightPushAsync(keyForList, "one", When.Always);
             
             // Append to list
             await db.ListRightPushAsync(keyForList, "two");

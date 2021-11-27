@@ -9,9 +9,10 @@
   - [x] Strings
   - [x] Object as json strings
   - [x] HashMap
-  - [ ] List
-  - [ ] listening to list
+  - [x] List
+  - [x] listening to list
   - [ ] Set
+  - [ ] pub/sub
   - [ ] Understand `RedisValue`
   - [ ] lua script
   - [ ] transactional updates
@@ -74,7 +75,9 @@
 
 - [***Lists***](07-Lists.md)
 
-  > 
+  > Blocking pop is not supported in Stackexchange.Redis. 
+
+- ***[Sets](./08-Sets.md)***
 
 - ***[Storing Objects for concurrent updates](06-ObjectsAsHashMaps.md)***
 
