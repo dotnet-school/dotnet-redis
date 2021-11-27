@@ -46,13 +46,18 @@ namespace ConsoleApp
 
             var setOneItems = new[] {"one", "one-two", "one-two-three"};
             var setTwoItems = new[] {"two", "one-two", "one-two-three"};
-            var setThreeItems = new[] {"three", "one-two-three"};
+            var setThreeItems = new[] {"three", "x", "one-two-three"};
             var toRedisValues = new Func<string, RedisValue>(s => new RedisValue(s));
 
             await db.SetAddAsync(setOneKey, setOneItems.Select(toRedisValues).ToArray());
             await db.SetAddAsync(setTwoKey, setTwoItems.Select(toRedisValues).ToArray());
             await db.SetAddAsync(setThreeKey, setThreeItems.Select(toRedisValues).ToArray());
             
+            // SMOVE: Move from a set to another (if found in original set)
+            await db.SetMoveAsync(setThreeKey, setOneKey, "x");
+            
+            // SMOVE : Does nothing as setThree dot have "x" any more
+            await db.SetMoveAsync(setThreeKey, setOneKey, "x");
             
         }
     }
