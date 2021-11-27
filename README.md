@@ -4,6 +4,8 @@
 
 - [ ] Setup docker-compose with redis
 
+- [ ] Excpaing multiplexer vs getDatabase(), cheap pass thorugh and reusable
+
 - [x] Create a client 
 
 - [x] Use `SETENX`
