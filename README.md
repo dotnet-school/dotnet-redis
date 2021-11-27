@@ -147,6 +147,15 @@ Following two seem to be most used and best supported :
 
 
 
+- Create a solution (if you want to )
+
+  ```bash
+  dotnet new sln
+  dotnet sln add ConsoleApp/ConsoleApp.csproj
+  ```
+
+  
+
 ### Connect with Redis 
 
 - Create following class in `ConsleApp/Program.cs`
