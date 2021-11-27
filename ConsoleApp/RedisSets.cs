@@ -58,7 +58,13 @@ namespace ConsoleApp
             
             // SMOVE : Does nothing as setThree dot have "x" any more
             await db.SetMoveAsync(setThreeKey, setOneKey, "x");
-            
+           
+            // SMOVE : Does nothing as setThree dot have "x" any more
+            await db.SetMoveAsync(setThreeKey, setOneKey, "x");
+
+            // SMEMBERS: Get all values in a set
+            var values = await db.SetMembersAsync(setOneKey);
+            Console.WriteLine($"items in one : {string.Join(", ", values.Select(v => v.ToString()))}");
         }
     }
 }
