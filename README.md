@@ -50,23 +50,23 @@
 
 ### Contents
 
-- ***[Setup Redis using Docker](00-SetupRedis)***
+- ***[Setup Redis using Docker](00-SetupRedis.md)***
 
-  > Use Docker to run redis and redis client on local machine
+  > Use Docker to run Redis and Redis CLI on your machine
 
-- ***[StackExchange.Redis](01-StackExchangeRedis)***
+- ***[StackExchange.Redis](01-StackExchangeRedis.md)***
 
   > Choose a client library and create a .NET console app
 
-- ***[Strings](./Strings)***
+- ***[Strings](./Strings.md)***
 
   > Save strings. learn TTL for key expiry, and using NX for writting only when value is null
 
-- ***[Storing Objects As Json Strings](04-ObjectsAsJsonStrings)***
+- ***[Storing Objects As Json Strings](04-ObjectsAsJsonStrings.md)***
 
   > Create extensions to build custom logic like serializing/deserializing objects to store them as JSON in Redis.
 
-- ***[Storing Objects as HashMaps](06-ObjectsAsHashMaps)***
+- ***[Storing Objects as HashMaps](06-ObjectsAsHashMaps.md)***
 
 
 
