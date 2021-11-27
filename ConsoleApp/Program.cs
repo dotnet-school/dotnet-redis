@@ -25,7 +25,8 @@ namespace ConsoleApp
       // TestObjects.Run(db);
       // await JsonObjectsInRedis.RunDemo(db);
       // await RedisHasMaps.RunDemo(db);
-      await RedisLists.RunDemo(db);
+      // await RedisLists.RunDemo(db);
+      await RedisSets.RunDemo(db);
     }
   }
 }
