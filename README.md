@@ -68,11 +68,15 @@
 
   > Create extensions to build custom logic like serializing/deserializing objects to store them as JSON in Redis.
 
-- **[HashMaps](05-Dictionary.md)**
+- ***[HashMaps](05-Dictionary.md)***
 
   > Use Entries to save and get Maps. APIs to update/read individual fields in Map.
 
-- ***[Storing Objects as HashMaps](06-ObjectsAsHashMaps.md)***
+- [***Lists***](07-Lists.md)
+
+  > 
+
+- ***[Storing Objects for concurrent updates](06-ObjectsAsHashMaps.md)***
 
 
 
