@@ -8,6 +8,11 @@ namespace ConsoleApp
     {
         public static async Task RunDemo(IDatabase db)
         {
+            await SimpleStringMaps(db);
+        }
+
+        public static async Task SimpleStringMaps(IDatabase db)
+        {
             HashEntry one = new HashEntry("key-one", "value-one");
             HashEntry two = new HashEntry("key-two", "value-two");
             await db.HashSetAsync("key-of-my-hash", new[] {one, two});
