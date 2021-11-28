@@ -9,6 +9,7 @@ read: https://stackexchange.github.io/StackExchange.Redis/Configuration
   - Use the database (`connectionMultiplexer.GetDatabase()`) as cheap pass through and don't mind creating it everytime you need to make a call
   - Use something like a `ConnectionFactory` to create connection settings based on runtime parameters (`appsettings.json`/ `Env variables` )
   - Use configuraion/connection callbacks in your wrappers/factories to handled cases like ssl workarounds and logging.
+  - Create redis connection lazily when required.
 
 - The redis client has several configuratino options. It is prefered to allow as many of them as relevant from config (`appsettings.json`/ `Env variables` )
 
@@ -96,6 +97,39 @@ read: https://stackexchange.github.io/StackExchange.Redis/Configuration
   {
     // Log that redis was reconnected
   }
+  ```
+
+- For creating redis connection lazily  : 
+
+  ```csharp
+  private readonly Lazy<IConnectionMultiplexer> _lazyConnection;
+  private readonly ConfigurationOptions _redisConfig;
+  
+  // This is how other services get connection object
+  public IConnectionMultiplexer Connection => _lazyConnection.Value;
+  
+  public RedisClient()
+  {
+    // Configuration for Redis (these should come from env variables)
+    _redisConfig = new ConfigurationOptions{
+      EndPoints = { "localhost:6379"},
+      Ssl = false,
+    };
+    _redisConfig.CertificateSelection += SelectCertifcate;
+    _redisConfig.CertificateValidation += ValidateRemoteCertificate;
+    
+    _lazyConnection = new Lazy<IConnectionMultiplexer>(CreateConnection);
+  }
+  
+  private IConnectionMultiplexer CreateConnection()
+  {
+    // Create connection with Redis
+    var connection =  ConnectionMultiplexer.Connect(_redisConfig);
+    connection.ConnectionRestored += OnReconnect;
+    connection.ConnectionFailed += OnConnectionFailed;
+    return connection;
+  }
+  
   ```
 
   

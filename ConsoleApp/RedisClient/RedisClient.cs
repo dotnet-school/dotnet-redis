@@ -1,3 +1,4 @@
+using System;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using StackExchange.Redis;
@@ -6,23 +7,31 @@ namespace ConsoleApp
 {
     public class RedisClient
     {
-        private readonly ConnectionMultiplexer _connection;
+        private readonly Lazy<IConnectionMultiplexer> _lazyConnection;
+        private readonly ConfigurationOptions _redisConfig;
+
+        public IConnectionMultiplexer Connection => _lazyConnection.Value;
 
         public RedisClient()
         {
             // Configuration for Redis (these should come from env variables)
-            var redisConfig = new ConfigurationOptions
+            _redisConfig = new ConfigurationOptions
             {
                 EndPoints = { "localhost:6379"},
                 Ssl = false,
             };
+            _redisConfig.CertificateSelection += SelectCertifcate;
+            _redisConfig.CertificateValidation += ValidateRemoteCertificate;
+            _lazyConnection = new Lazy<IConnectionMultiplexer>(CreateConnection);
+        }
 
-            redisConfig.CertificateSelection += SelectCertifcate;
-            redisConfig.CertificateValidation += ValidateRemoteCertificate;
+        private IConnectionMultiplexer CreateConnection()
+        {
             // Create connection with Redis
-            _connection =  ConnectionMultiplexer.Connect(redisConfig);
-            _connection.ConnectionRestored += OnReconnect;
-            _connection.ConnectionFailed += OnConnectionFailed;
+            var connection =  ConnectionMultiplexer.Connect(_redisConfig);
+            connection.ConnectionRestored += OnReconnect;
+            connection.ConnectionFailed += OnConnectionFailed;
+            return connection;
         }
 
         private void OnConnectionFailed(
