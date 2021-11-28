@@ -10,7 +10,7 @@ namespace ConsoleApp
 
         public RedisClient()
         {
-            // Configuration for Redis
+            // Configuration for Redis (these should come from env variables)
             var redisConfig = new ConfigurationOptions
             {
                 EndPoints = { "localhost:6379"},
@@ -21,6 +21,22 @@ namespace ConsoleApp
             redisConfig.CertificateValidation += ValidateRemoteCertificate;
             // Create connection with Redis
             _connection =  ConnectionMultiplexer.Connect(redisConfig);
+            _connection.ConnectionRestored += OnReconnect;
+            _connection.ConnectionFailed += OnConnectionFailed;
+        }
+
+        private void OnConnectionFailed(
+            object? sender, 
+            ConnectionFailedEventArgs e)
+        {
+            // Log that connection has failed
+        }
+
+        private void OnReconnect(
+            object? sender, 
+            ConnectionFailedEventArgs e)
+        {
+            // Log that redis was reconnected
         }
 
         private bool ValidateRemoteCertificate(

@@ -2,6 +2,14 @@ read: https://stackexchange.github.io/StackExchange.Redis/Configuration
 
 # Connections and Configurations
 
+- Some suggestions for setting up your project
+
+  - Wrap Redis client  in you own custom class
+  - Reuse connection multiplexer throughout the application (it is designed for this)
+  - Use the database (`connectionMultiplexer.GetDatabase()`) as cheap pass through and don't mind creating it everytime you need to make a call
+  - Use something like a `ConnectionFactory` to create connection settings based on runtime parameters (`appsettings.json`/ `Env variables` )
+  - Use configuraion/connection callbacks in your wrappers/factories to handled cases like ssl workarounds and logging.
+
 - The redis client has several configuratino options. It is prefered to allow as many of them as relevant from config (`appsettings.json`/ `Env variables` )
 
 - There are some simple flag based options that can be used as below : 
@@ -70,7 +78,24 @@ read: https://stackexchange.github.io/StackExchange.Redis/Configuration
 
 - Or you may need to explicitly log the events like connection disconnects/reconnects: 
 
-  ```
+  ```csharp
+  _connection =  ConnectionMultiplexer.Connect(redisConfig);
+  _connection.ConnectionRestored += OnReconnect;
+  _connection.ConnectionFailed += OnConnectionFailed;
+  
+  private void OnConnectionFailed(
+    object? sender, 
+    ConnectionFailedEventArgs e)
+  {
+    // Log that connection has failed
+  }
+  
+  private void OnReconnect(
+    object? sender, 
+    ConnectionFailedEventArgs e)
+  {
+    // Log that redis was reconnected
+  }
   ```
 
   
